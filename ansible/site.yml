@@ -1,0 +1,19 @@
+---
+- hosts: 64bit.test
+  become: true
+  user: "{{ansible_user}}"
+  roles:
+    - common
+    - login_user
+    - ruby
+    - python
+
+- hosts: 32bit.test
+  become: true
+  user: "{{ansible_user}}"
+  roles:
+    - common
+    - login_user
+    - ruby
+    - python
+

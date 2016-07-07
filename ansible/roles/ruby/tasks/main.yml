@@ -1,0 +1,41 @@
+---
+ - name: install base sotfware
+   apt: name={{ item }} state=present
+   with_items:
+      - curl
+      - g++
+      - zlib1g-dev 
+      - libssl-dev 
+      - libreadline-dev 
+      - libyaml-dev 
+      - libxml2-dev 
+      - libxslt-dev
+      - sqlite3 
+      - libsqlite3-dev 
+      - nodejs
+
+ - name: install rbenv
+   git: repo=https://github.com/sstephenson/rbenv.git dest=/home/{{ login_user }}/.rbenv
+
+ - name: chown rbenv
+   file: path=/home/{{ login_user }}/.rbenv owner={{ login_user }} group={{ login_user }} mode=0700
+
+ - name: setting rbenv path to .bashrc
+   lineinfile:
+    dest='/home/{{ login_user }}/.bashrc'
+    state=present
+    line='export PATH="$HOME/.rbenv/bin:$PATH"'
+
+ - name: setting rbenv init to .bashrc
+   lineinfile:
+    dest='/home/{{ login_user }}/.bashrc'
+    state=present
+    line='eval "$(rbenv init -)"'
+
+ - name: install ruby-build
+   git: repo=https://github.com/sstephenson/ruby-build.git dest=/home/{{ login_user }}/.rbenv/plugins/ruby-build
+
+ - name: chown ruby-build
+   file: path=/home/{{ login_user }}/.rbenv/plugins/ruby-build owner={{ login_user }} group={{ login_user }} mode=0700
+
+

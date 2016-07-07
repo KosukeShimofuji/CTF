@@ -1,0 +1,6 @@
+[core]
+
+32bit.test ansible_ssh_user=vagrant ansible_ssh_private_key_file=./.vagrant/machines/32bit.test/virtualbox/private_key
+64bit.test ansible_ssh_user=vagrant ansible_ssh_private_key_file=./.vagrant/machines/64bit.test/virtualbox/private_key
+
+

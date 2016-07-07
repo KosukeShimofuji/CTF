@@ -1,0 +1,19 @@
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.define "64bit.test" do |machine|
+    machine.vm.box = "box-cutter/debian82"
+    machine.vm.box_url = "https://vagrantcloud.com/box-cutter/boxes/debian82"
+    machine.vm.network "private_network", ip: "192.168.10.104"
+    config.vm.synced_folder ".", "/vagrant", disabled: true
+  end
+
+  config.vm.define "32bit.test" do |machine|
+    machine.vm.box = "box-cutter/debian82-i386"
+    machine.vm.box_url = "https://vagrantcloud.com/box-cutter/boxes/debian82-i386"
+    machine.vm.network "private_network", ip: "192.168.10.105"
+    config.vm.synced_folder ".", "/vagrant", disabled: true
+  end
+end
+
+
